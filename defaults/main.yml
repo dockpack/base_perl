@@ -1,26 +1,29 @@
 ---
-
+# Pre-compiled for RedHat
 perl_rpms:
+  - perl-CPAN
   - perl-Module-CoreList
   - perl-Module-Build
   - perl-Module-Install
-  - perl-CPAN
-  - perl-Perl-Critic
-  - perl-Test-Perl-Critic
-  - perl-Test-Harness
-  - perl-Test-Unit
   - perl-Term-ReadLine-Gnu
   - perl-TermReadKey
-  - perl-DBD-Pg
   - perl-Digest-Perl-MD5
   - perl-Digest-SHA
+  - perl-Perl-Critic
+  - perl-Test-Perl-Critic
+  - perl-Test-Unit
   - perl-Expect
   - perl-HTML-Parser
   - perl-HTML-Tidy
   - perl-LDAP
   - perl-Mail-Sendmail
-  - perl-Redis
   - perl-TimeDate
   - perl-XML-Dumper
   - perl-YAML-LibYAML
   - perl-libwww-perl
+
+# Optional modules (pure perl, or compiled in provisioing with cplusplus)
+perl_modules:
+   - 'Test::Harness'
+   - 'Redis'
+

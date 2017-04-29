@@ -1,7 +1,45 @@
 ---
 
 - name: 'install required RPMs'
-  yum: name={{ item }} state=present
+  yum:
+    name: "{{ item }}"
+    state: present
   with_items: "{{ perl_rpms }}"
   tags:
     - perl
+    - perl_rpms
+
+- name: 'ensure CPAN config exists'
+  file:
+    path: '/root/.cpan/CPAN/'
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  tags:
+    - perl
+    - perl_config
+
+- name: 'install CPAN configuration'
+  template:
+    src: 'MyConfig.pm'
+    dest: '/root/.cpan/CPAN/'
+  tags:
+    - perl
+    - perl_config
+
+- name: 'installing CPANM'
+  shell: 'curl -L https://cpanmin.us | perl - App::cpanminus'
+  tags:
+    - perl
+
+
+- name: 'install optional modules'
+  environment:
+    PATH: '/sbin:/usr/sbin/:bin:/usr/bin:/usr/local/bin'
+  cpanm:
+    name: "{{ item }}"
+  with_items: "{{ perl_modules}}"
+  tags:
+    - perl
+    - perl_modules
