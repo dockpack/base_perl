@@ -3,7 +3,6 @@
 perl_rpms:
   - perl-Module-CoreList
   - perl-Module-Build
-  - perl-Module-Info
   - perl-Module-Install
   - perl-CPAN
   - perl-Perl-Critic
