@@ -25,3 +25,4 @@ galaxy_info:
 
 dependencies:
   - { src: base_common }
+  - { src: base_cplusplus }
