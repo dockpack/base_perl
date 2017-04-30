@@ -1,6 +1,6 @@
 ---
 # this could be refactored for normal user mode
-- name: 'install required RPMs'
+- name: 'install required RPMs for Perl development'
   become: yes
   when: ansible_os_family == 'RedHat'
   yum:
@@ -10,6 +10,18 @@
   tags:
     - perl
     - perl_rpms
+
+- name: 'apt install packages for Perl development'
+  when: ansible_os_family == 'Debian'
+  apt:
+    pkg: "{{ item }}"
+    update_cache: yes
+    cache_valid_time: 86400
+    state: present
+  with_items: "{{ perl_apts }}"
+  tags:
+    - perl
+    - perl_apts
 
 - name: 'ensure CPAN config exists'
   become: yes
@@ -32,19 +44,26 @@
     - perl
     - perl_config
 
+- name: 'install App::cpanminus'
+  become: yes
+  copy:
+    src: 'cpanminus.pl'
+    dest: '/root/cpanminus.pl'
+  tags:
+    - perl
+    - perl_config
+
 # Dirty yes.
 - name: 'installing CPANM'
   become: yes
-  shell: 'curl -L https://cpanmin.us | perl - App::cpanminus'
+  shell: 'cat /root/cpanminus.pl | perl - App::cpanminus'
   tags:
     - perl
 
 # Perl modules with Ansible
 - name: 'install optional modules'
-  environment:
-    PATH: '/sbin:/usr/sbin/:bin:/usr/bin:/usr/local/bin'
-  cpanm:
-    name: "{{ item }}"
+  become: yes
+  command: /usr/local/bin/cpanm "{{ item }}"
   with_items: "{{ perl_modules}}"
   tags:
     - perl

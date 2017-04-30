@@ -22,8 +22,25 @@ perl_rpms:
   - perl-YAML-LibYAML
   - perl-libwww-perl
 
+perl_apts:
+  - perl
+  - perl-debug
+  - perl-modules
+  - libperl-dev
+  - libperl5.18
+  - libarchive-extract-perl
+  - libmodule-pluggable-perl
+  - libterm-ui-perl
+  - libtext-soundex-perl
+  - libb-lint-perl
+  - libcpanplus-dist-build-perl
+  - libcpanplus-perl
+  - libfile-checktree-perl
+  - liblog-message-perl
+
 # Optional modules (pure perl, or compiled in provisioing with cplusplus)
 perl_modules:
    - 'Test::Harness'
-   - 'Redis'
+   - 'TAP::Harness::Env'
+   - 'ExtUtils::Config'
 
