@@ -25,5 +25,6 @@ galaxy_info:
     - development
 
 dependencies:
-  - { role: base_common }
-  - { role: base_cplusplus }
+  - { role: bbaassssiiee.base_common }
+  - { role: bbaassssiiee.base_epel }
+  - { role: bbaassssiiee.base_cplusplus }
