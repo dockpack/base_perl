@@ -1,9 +1,9 @@
----
+
 galaxy_info:
   name: base_perl
   author: bbaassssiiee
   description: Perl - practical eclectic rubbish lister
-  company: ---
+  company: 
 
   license: MIT
 
