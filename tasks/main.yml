@@ -55,8 +55,17 @@
     - perl_config
 
 # Dirty yes.
+- name: 'query for CPANM'
+  become: no
+  command: perl -MApp::cpanminus -e exit;
+  ignore_errors: yes
+  no_log: yes
+  register: cpanm_present
+  changed_when: no
+
 - name: 'installing CPANM'
   become: yes
+  when: cpanm_present.rc != 0
   shell: 'cat /root/cpanminus.pl | perl - App::cpanminus'
   tags:
     - perl
@@ -65,7 +74,7 @@
 - name: 'install optional modules'
   become: yes
   command: /usr/local/bin/cpanm "{{ item }}"
-  with_items: "{{ perl_modules}}"
+  with_items: "{{ perl_modules }}"
   tags:
     - perl
     - perl_modules

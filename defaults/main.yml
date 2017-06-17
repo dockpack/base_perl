@@ -24,11 +24,11 @@ perl_rpms:
   - perl-libwww-perl
 
 perl_apts:
+  - python-pip
   - perl
   - perl-debug
   - perl-modules
   - libperl-dev
-  - libperl5.18
   - libarchive-extract-perl
   - libmodule-pluggable-perl
   - libterm-ui-perl

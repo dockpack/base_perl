@@ -136,9 +136,9 @@ $fatpacked{"CPAN/DistnameInfo.pm"} = '#line '.(1+__LINE__).' "'.__FILE__."\"\n".
   package CPAN::DistnameInfo;$VERSION="0.12";use strict;sub distname_info {my$file=shift or return;my ($dist,$version)=$file =~ /^
       ((?:[-+.]*(?:[A-Za-z0-9]+|(?<=\D)_|_(?=\D))*
        (?:
-  	[A-Za-z](?=[^A-Za-z]|$)
-  	|
-  	\d(?=-)
+    [A-Za-z](?=[^A-Za-z]|$)
+    |
+      \d(?=-)
        )(?<![._-][vV])
       )+)(.*)
     $/xs or return ($file,undef,undef);if ($dist =~ /-undef\z/ and!length$version){$dist =~ s/-undef\z//}$version =~ s/-withoutworldwriteables$//;if ($version =~ /^(-[Vv].*)-(\d.*)/){$dist .= $1;$version=$2}if ($version =~ /(.+_.*)-(\d.*)/){$dist .= $1;$version=$2}$dist =~ s{\.pm$}{};$version=$1 if!length$version and $dist =~ s/-(\d+\w)$//;$version=$1 .$version if$version =~ /^\d+$/ and $dist =~ s/-(\w+)$//;if ($version =~ /\d\.\d/){$version =~ s/^[-_.]+//}else {$version =~ s/^[-_]+//}my$dev;if (length$version){if ($file =~ /^perl-?\d+\.(\d+)(?:\D(\d+))?(-(?:TRIAL|RC)\d+)?$/){$dev=1 if (($1 > 6 and $1 & 1)or ($2 and $2 >= 50))or $3}elsif ($version =~ /\d\D\d+_\d/ or $version =~ /-TRIAL/){$dev=1}}else {$version=undef}($dist,$version,$dev)}sub new {my$class=shift;my$distfile=shift;$distfile =~ s,//+,/,g;my%info=(pathname=>$distfile);($info{filename}=$distfile)=~ s,^(((.*?/)?authors/)?id/)?([A-Z])/(\4[A-Z])/(\5[-A-Z0-9]*)/,, and $info{cpanid}=$6;if ($distfile =~ m,([^/]+)\.(tar\.(?:g?z|bz2)|zip|tgz)$,i){$info{distvname}=$1;$info{extension}=$2}@info{qw(dist version beta)}=distname_info($info{distvname});$info{maturity}=delete$info{beta}? 'developer' : 'released';return bless \%info,$class}sub dist {shift->{dist}}sub version {shift->{version}}sub maturity {shift->{maturity}}sub filename {shift->{filename}}sub cpanid {shift->{cpanid}}sub distvname {shift->{distvname}}sub extension {shift->{extension}}sub pathname {shift->{pathname}}sub properties {%{$_[0]}}1;
@@ -444,12 +444,12 @@ VERSION
 
 $fatpacked{"version/regex.pm"} = '#line '.(1+__LINE__).' "'.__FILE__."\"\n".<<'VERSION_REGEX';
   package version::regex;use strict;use vars qw($VERSION $CLASS $STRICT $LAX);$VERSION=0.9912;my$FRACTION_PART=qr/\.[0-9]+/;my$STRICT_INTEGER_PART=qr/0|[1-9][0-9]*/;my$LAX_INTEGER_PART=qr/[0-9]+/;my$STRICT_DOTTED_DECIMAL_PART=qr/\.[0-9]{1,3}/;my$LAX_DOTTED_DECIMAL_PART=qr/\.[0-9]+/;my$LAX_ALPHA_PART=qr/_[0-9]+/;my$STRICT_DECIMAL_VERSION=qr/ $STRICT_INTEGER_PART $FRACTION_PART? /x;my$STRICT_DOTTED_DECIMAL_VERSION=qr/ v $STRICT_INTEGER_PART $STRICT_DOTTED_DECIMAL_PART{2,} /x;$STRICT=qr/ $STRICT_DECIMAL_VERSION | $STRICT_DOTTED_DECIMAL_VERSION /x;my$LAX_DECIMAL_VERSION=qr/ $LAX_INTEGER_PART (?: \. | $FRACTION_PART $LAX_ALPHA_PART? )?
-  	|
-  	$FRACTION_PART $LAX_ALPHA_PART?
+    |
+    $FRACTION_PART $LAX_ALPHA_PART?
       /x;my$LAX_DOTTED_DECIMAL_VERSION=qr/
-  	v $LAX_INTEGER_PART (?: $LAX_DOTTED_DECIMAL_PART+ $LAX_ALPHA_PART? )?
-  	|
-  	$LAX_INTEGER_PART? $LAX_DOTTED_DECIMAL_PART{2,} $LAX_ALPHA_PART?
+    v $LAX_INTEGER_PART (?: $LAX_DOTTED_DECIMAL_PART+ $LAX_ALPHA_PART? )?
+    |
+    $LAX_INTEGER_PART? $LAX_DOTTED_DECIMAL_PART{2,} $LAX_ALPHA_PART?
       /x;$LAX=qr/ undef | $LAX_DECIMAL_VERSION | $LAX_DOTTED_DECIMAL_VERSION /x;sub is_strict {defined $_[0]&& $_[0]=~ qr/ \A $STRICT \z /x}sub is_lax {defined $_[0]&& $_[0]=~ qr/ \A $LAX \z /x}1;
 VERSION_REGEX
 

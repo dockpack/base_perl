@@ -1,10 +1,10 @@
 ---
-
+# Standards: 0.2
 galaxy_info:
   name: base_perl
-  author: bbaassssiiee
+  author: Bas Meijer
   description: Perl - practical eclectic rubbish lister.
-  company:
+  company: bbaassssiiee
 
   license: MIT
 
@@ -24,6 +24,10 @@ galaxy_info:
   galaxy_tags:
     - system
     - development
+    - buildserver
+    - perl
+    - centos
+    - ubuntu
 
 dependencies:
   - bbaassssiiee.base_common
