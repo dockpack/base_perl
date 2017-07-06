@@ -13,12 +13,12 @@ docker:
       privileged: True
       ansible_groups:
         - group1
-    - name: base-perl-ubuntu
-      image: ubuntu
-      image_version: latest
-      privileged: True
-      ansible_groups:
-        - group2
+#    - name: base-perl-ubuntu
+#      image: ubuntu
+#      image_version: latest
+#      privileged: True
+#      ansible_groups:
+#        - group2
 #    - name: base-perl-debian
 #      image: maint/debian-systemd
 #      image_version: latest

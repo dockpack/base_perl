@@ -73,7 +73,9 @@
 # Perl modules with Ansible
 - name: 'install optional modules'
   become: yes
-  command: /usr/local/bin/cpanm "{{ item }}"
+  command: /usr/local/bin/cpanm "{{ item.module }}"
+  args:
+    creates: "{{ item.creates }}"
   with_items: "{{ perl_modules }}"
   tags:
     - perl

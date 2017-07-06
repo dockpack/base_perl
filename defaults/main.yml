@@ -41,6 +41,5 @@ perl_apts:
 
 # Optional modules (pure perl, or compiled in provisioing with cplusplus)
 perl_modules:
-  - 'Test::Harness'
-  - 'TAP::Harness::Env'
-  - 'ExtUtils::Config'
+  - module: 'Test::Harness'
+    creates: '/usr/share/perl5/vendor_perl/TAP/Harness'
