@@ -27,8 +27,6 @@ bbaassssiiee.base\_cplusplus
 
 bbaassssiiee.base\_common
 
-bbaassssiiee.base\_epel
-
 
 Example Playbook
 ----------------

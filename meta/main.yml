@@ -31,5 +31,4 @@ galaxy_info:
 
 dependencies:
   - bbaassssiiee.base_common
-  - bbaassssiiee.base_epel
   - bbaassssiiee.base_cplusplus
