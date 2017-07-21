@@ -2,6 +2,4 @@
 # Standards: 0.2
 - hosts: all
   roles:
-    - role: base_common
-    - role: base_epel
     - role: base_perl
