@@ -6,7 +6,6 @@ perl_rpms:
   - perl-Module-CoreList
   - perl-Module-Build
   - perl-Module-Install
-  - perl-Term-ReadLine-Gnu
   - perl-TermReadKey
   - perl-Digest-Perl-MD5
   - perl-Digest-SHA
