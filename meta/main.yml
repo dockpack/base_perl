@@ -30,6 +30,6 @@ galaxy_info:
     - ubuntu
 
 dependencies:
-  - bbaassssiiee.base_common
-  - bbaassssiiee.base_epel
-  - bbaassssiiee.base_cplusplus
+  - dockpack.base_common
+  - dockpack.base_epel
+  - dockpack.base_cplusplus
