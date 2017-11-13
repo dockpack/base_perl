@@ -6,7 +6,7 @@ Perl - The practical eclectic rubbish lister. Perl development.
 Requirements
 ------------
 
-This role was built for Ubuntu Trusty, Debian, or RedHat systems like RHEL 6, Centos 6.
+This role was built for RedHat systems like RHEL 6, Centos 7.
 It needs dockpack.base_java8.
 
 Role Variables
