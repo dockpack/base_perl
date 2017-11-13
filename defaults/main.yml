@@ -2,6 +2,8 @@
 
 # Pre-compiled for RedHat
 perl_rpms:
+  - openssl-devel
+  - python-devel
   - perl-CPAN
   - perl-Module-CoreList
   - perl-Module-Build
