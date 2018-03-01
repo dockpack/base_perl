@@ -1,3 +1,6 @@
+![Build Status](https://api.travis-ci.org/dockpack/base_perl.svg)
+
+
 dockpack.base_perl
 =========
 
