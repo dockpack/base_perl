@@ -62,6 +62,8 @@
   no_log: yes
   register: cpanm_present
   changed_when: no
+  tags:
+    - skip_ansible_lint
 
 - name: 'installing CPANM'
   become: yes
@@ -80,3 +82,4 @@
   tags:
     - perl
     - perl_modules
+    - skip_ansible_lint
