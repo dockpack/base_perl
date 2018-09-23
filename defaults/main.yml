@@ -9,7 +9,6 @@ perl_rpms:
   - perl-Module-Build
   - perl-Module-Install
   - perl-TermReadKey
-  - perl-Digest-Perl-MD5
   - perl-Digest-SHA
   - perl-Perl-Critic
   - perl-Test-Perl-Critic
