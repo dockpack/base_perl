@@ -1,4 +1,4 @@
-[![Galaxy](https://img.shields.io/badge/galaxy-dockpack.base__perl-blue.svg?style=flat)](https://galaxy.ansible.com/dockpack/base_perl)![Build Status](https://api.travis-ci.org/dockpack/base_perl.svg)
+[![Galaxy](https://img.shields.io/badge/galaxy-dockpack.base__perl-blue.svg?style=flat)](https://galaxy.ansible.com/dockpack/base_perl)[![Build Status](https://api.travis-ci.org/dockpack/base_perl.svg)](https://travis-ci.org/dockpack/base_perl)
 
 
 dockpack.base_perl

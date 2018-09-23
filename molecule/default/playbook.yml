@@ -2,4 +2,5 @@
 # Standards: 0.2
 - hosts: all
   roles:
+    - role: dockpack.base_goss
     - role: base_perl

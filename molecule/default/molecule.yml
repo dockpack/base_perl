@@ -1,0 +1,29 @@
+---
+# Standards: 0.2
+dependency:
+  name: galaxy
+  requirements_file: requirements.yml
+driver:
+  name: docker
+verifier:
+  name: goss
+  lint:
+    name: yamllint
+platforms:
+  - name: base-perl-centos
+    image: milcom/centos7-systemd
+    privileged: true
+  - name: base-perl-ubuntu
+    image: ubuntu
+    privileged: true
+provisioner:
+  name: ansible
+  config_options:
+    defaults:
+      remote_tmp: /tmp
+  playbooks:
+    converge: playbook.yml
+  lint:
+    name: ansible-lint
+scenario:
+  name: default

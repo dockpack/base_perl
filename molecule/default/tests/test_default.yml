@@ -1,0 +1,13 @@
+---
+file:
+  /usr/bin/node:
+    exists: true
+    owner: root
+    group: root
+    filetype: file
+    contains: []
+  /usr/bin/npm:
+    exists: true
+    owner: root
+    group: root
+    contains: []
