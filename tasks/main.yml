@@ -5,9 +5,8 @@
   become: yes
   when: ansible_os_family == 'RedHat'
   yum:
-    name: "{{ item }}"
+    name: "{{ perl_rpms }}"
     state: present
-  with_items: "{{ perl_rpms }}"
   tags:
     - perl
     - perl_rpms
@@ -15,11 +14,10 @@
 - name: 'apt install packages for Perl development'
   when: ansible_os_family == 'Debian'
   apt:
-    pkg: "{{ item }}"
+    pkg: "{{ perl_apts }}"
     update_cache: yes
     cache_valid_time: 86400
     state: present
-  with_items: "{{ perl_apts }}"
   tags:
     - perl
     - perl_apts
@@ -68,7 +66,9 @@
 - name: 'installing CPANM'
   become: yes
   when: cpanm_present.rc != 0
-  shell: 'cat /root/cpanminus.pl | perl - App::cpanminus'
+  shell: |
+    set -o pipefail
+    cat /root/cpanminus.pl | perl - App::cpanminus
   tags:
     - perl
 
