@@ -3,8 +3,8 @@
 - src: https://github.com/dockpack/base_epel.git
   name: dockpack.base_epel
 
-- src: https://github.com/dockpack/base_cplusplus.git
-  name: dockpack.base_cplusplus
+- src: https://github.com/dockpack/base_gcc.git
+  name: dockpack.base_gcc
 
 - src: https://github.com/dockpack/base_common.git
   name: dockpack.base_common
