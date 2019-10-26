@@ -14,13 +14,14 @@ platforms:
     image: milcom/centos7-systemd
     privileged: true
   - name: base-perl-ubuntu
-    image: ubuntu
+    image: ubuntu:xenial
     privileged: true
 provisioner:
   name: ansible
   config_options:
     defaults:
       remote_tmp: /tmp
+      stdout_callback: yaml
   playbooks:
     converge: playbook.yml
   lint:
