@@ -57,7 +57,7 @@
   become: no
   command: perl -MApp::cpanminus -e exit;
   ignore_errors: yes
-  no_log: yes
+  no_log: no
   register: cpanm_present
   changed_when: no
   tags:
@@ -66,8 +66,8 @@
 - name: 'installing CPANM'
   become: yes
   when: cpanm_present.rc != 0
-  shell: |
-    set -o pipefail
+  shell: >
+    set -o pipefail \
     cat /root/cpanminus.pl | perl - App::cpanminus
   tags:
     - perl
