@@ -27,5 +27,5 @@
       changed_when: True
 
     - name: Test goss files
-      shell: "export GOSS_FILE={{ goss_file }};goss validate --format nagios_verbose"
+      shell: "export GOSS_FILE={{ goss_file }};goss validate --format tap"
       changed_when: False

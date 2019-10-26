@@ -1,26 +1,13 @@
 ---
 
 # this could be refactored for normal user mode
-- name: 'install required RPMs for Perl development'
-  become: yes
+- name: 'run redhat tasks.yml'
   when: ansible_os_family == 'RedHat'
-  yum:
-    name: "{{ perl_rpms }}"
-    state: present
-  tags:
-    - perl
-    - perl_rpms
+  include_tasks: RedHat.yml
 
-- name: 'apt install packages for Perl development'
+- name: 'run redhat tasks.yml'
   when: ansible_os_family == 'Debian'
-  apt:
-    pkg: "{{ perl_apts }}"
-    update_cache: yes
-    cache_valid_time: 86400
-    state: present
-  tags:
-    - perl
-    - perl_apts
+  include_tasks: Debian.yml
 
 - name: 'ensure CPAN config exists'
   become: yes

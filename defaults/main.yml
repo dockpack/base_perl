@@ -1,5 +1,4 @@
 ---
-
 # Pre-compiled for RedHat
 perl_rpms:
   - openssl-devel
@@ -38,8 +37,3 @@ perl_apts:
   - libcpanplus-perl
   - libfile-checktree-perl
   - liblog-message-perl
-
-# Optional modules (pure perl, or compiled in provisioing with cplusplus)
-perl_modules:
-  - module: 'Test::Harness'
-    creates: '/usr/share/perl5/vendor_perl/TAP/Harness'

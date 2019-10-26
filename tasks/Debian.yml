@@ -1,0 +1,41 @@
+---
+
+- name: 'apt install packages for Perl development'
+  apt:
+    pkg: "{{ perl_apts }}"
+    update_cache: yes
+    cache_valid_time: 86400
+    state: present
+  tags:
+    - perl
+    - perl_apts
+
+- name: 'lookup perl version'
+  shell: >
+    set -o pipefail ; \
+    basename $(find /usr/bin -samefile /usr/bin/perl|tail -1)|sed 's/perl//'
+  args:
+    executable: /bin/bash
+  changed_when: false
+  register: perllink
+  tags:
+    - perl_lib
+
+- name: 'set perl_version'
+  when: perllink.rc == 0
+  set_fact:
+    perl_version: "{{ perllink.stdout }}"
+  tags:
+    - perl_lib
+
+- name: 'set perl_lib'
+  set_fact:
+    perl_lib: "/usr/local/share/perl/{{ perl_version }}"
+  tags:
+    - perl_lib
+
+- name: 'display perl_lib'
+  debug:
+    msg: "perl_lib: {{ perl_lib }}"
+  tags:
+    - perl_lib
