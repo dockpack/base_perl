@@ -32,4 +32,4 @@ galaxy_info:
 dependencies:
   - dockpack.base_common
   - dockpack.base_epel
-  - dockpack.base_cplusplus
+  - dockpack.base_gcc

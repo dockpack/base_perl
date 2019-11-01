@@ -1,0 +1,14 @@
+---
+
+- name: 'install required RPMs for Perl development'
+  become: yes
+  yum:
+    name: "{{ perl_rpms }}"
+    state: present
+  tags:
+    - perl
+    - perl_rpms
+
+- name: 'set perl_lib'
+  set_fact:
+    perl_lib: "/usr/share/perl5/vendor_perl"

@@ -1,28 +1,13 @@
 ---
 
 # this could be refactored for normal user mode
-- name: 'install required RPMs for Perl development'
-  become: yes
+- name: 'run redhat tasks.yml'
   when: ansible_os_family == 'RedHat'
-  yum:
-    name: "{{ item }}"
-    state: present
-  with_items: "{{ perl_rpms }}"
-  tags:
-    - perl
-    - perl_rpms
+  include_tasks: RedHat.yml
 
-- name: 'apt install packages for Perl development'
+- name: 'run redhat tasks.yml'
   when: ansible_os_family == 'Debian'
-  apt:
-    pkg: "{{ item }}"
-    update_cache: yes
-    cache_valid_time: 86400
-    state: present
-  with_items: "{{ perl_apts }}"
-  tags:
-    - perl
-    - perl_apts
+  include_tasks: Debian.yml
 
 - name: 'ensure CPAN config exists'
   become: yes
@@ -54,13 +39,12 @@
     - perl
     - perl_config
 
-# Dirty yes.
 - name: 'query for CPANM'
   become: no
   command: perl -MApp::cpanminus -e exit;
-  ignore_errors: yes
-  no_log: yes
+  no_log: no
   register: cpanm_present
+  failed_when: not cpanm_present.rc in [0, 2]
   changed_when: no
   tags:
     - skip_ansible_lint
@@ -68,7 +52,11 @@
 - name: 'installing CPANM'
   become: yes
   when: cpanm_present.rc != 0
-  shell: 'cat /root/cpanminus.pl | perl - App::cpanminus'
+  shell: >
+    set -o pipefail; \
+    cat /root/cpanminus.pl | perl - App::cpanminus
+  args:
+    executable: /bin/bash
   tags:
     - perl
 

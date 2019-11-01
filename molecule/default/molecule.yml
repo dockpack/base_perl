@@ -10,17 +10,15 @@ verifier:
   lint:
     name: yamllint
 platforms:
-  - name: base-perl-centos
+  - name: base-perl-centos7
     image: milcom/centos7-systemd
-    privileged: true
-  - name: base-perl-ubuntu
-    image: ubuntu
     privileged: true
 provisioner:
   name: ansible
   config_options:
     defaults:
       remote_tmp: /tmp
+      stdout_callback: yaml
   playbooks:
     converge: playbook.yml
   lint:

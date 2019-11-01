@@ -1,0 +1,5 @@
+---
+# Optional modules (pure perl, or compiled in provisioing with cplusplus)
+perl_modules:
+  - module: 'Test::Harness'
+    creates: "{{ perl_lib }}/TAP/Harness"
