@@ -1,7 +1,7 @@
 ---
 
 - name: 'install required RPMs for Perl development'
-  become: yes
+  become: true
   yum:
     name: "{{ perl_rpms }}"
     state: present

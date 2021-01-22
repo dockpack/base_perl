@@ -10,7 +10,7 @@
   include_tasks: Debian.yml
 
 - name: 'ensure CPAN config exists'
-  become: yes
+  become: true
   file:
     path: '/root/.cpan/CPAN/'
     state: directory
@@ -22,35 +22,37 @@
     - perl_config
 
 - name: 'install CPAN configuration'
-  become: yes
+  become: true
   template:
     src: 'MyConfig.pm'
     dest: '/root/.cpan/CPAN/'
+    mode: 0600
   tags:
     - perl
     - perl_config
 
 - name: 'install App::cpanminus'
-  become: yes
+  become: true
   copy:
     src: 'cpanminus.pl'
     dest: '/root/cpanminus.pl'
+    mode: 0700
   tags:
     - perl
     - perl_config
 
 - name: 'query for CPANM'
-  become: no
+  become: false
   command: perl -MApp::cpanminus -e exit;
-  no_log: no
+  no_log: false
   register: cpanm_present
   failed_when: not cpanm_present.rc in [0, 2]
-  changed_when: no
+  changed_when: false
   tags:
     - skip_ansible_lint
 
 - name: 'installing CPANM'
-  become: yes
+  become: true
   when: cpanm_present.rc != 0
   shell: >
     set -o pipefail; \
@@ -62,7 +64,7 @@
 
 # Perl modules with Ansible
 - name: 'install optional modules'
-  become: yes
+  become: true
   command: /usr/local/bin/cpanm "{{ item.module }}"
   args:
     creates: "{{ item.creates }}"
